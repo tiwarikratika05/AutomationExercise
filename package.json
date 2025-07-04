@@ -1,0 +1,20 @@
+{
+  "name": "automationexerciseproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "create": "npx playwright test --reporter=line,allure-playwright",
+    "generate":"npx allure-commandline generate ./allure-results --clean",
+    "open":"npx allure-commandline open ./allure-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.53.2",
+    "@types/node": "^24.0.4",
+    "allure-playwright": "^3.3.0"
+  }
+}
