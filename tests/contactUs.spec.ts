@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import path from 'path';
-import { ContactUs } from '../pageobjects/ContactUs'
+import { ContactUs } from '../pageobjects/ContactUsPage'
 import CONTACTDATA from '../test-data/contactUs-test-data.json'
 
 test.describe('As a user, I should be able to access contact us page', async () => {
@@ -17,7 +17,6 @@ test.describe('As a user, I should be able to access contact us page', async () 
                 await dialog.accept();
             });
             await contactPage.submitForm();   
-          //  await expect(page.getByText('Success! Your details have been submitted successfully.')).toBeVisible()
         });
 
 });

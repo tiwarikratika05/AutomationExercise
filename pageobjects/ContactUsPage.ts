@@ -1,6 +1,16 @@
-export class ContactUs {
+import { Page, Locator } from "@playwright/test";
 
-    constructor(page) {
+export class ContactUs {
+    page: Page;
+    contactUsBtn: Locator;
+    name: Locator;
+    email: Locator;
+    subject: Locator;
+    message: Locator;
+    selectFile: Locator;
+    submitBtn: Locator;
+
+    constructor(page: Page) {
         this.page = page;
         this.contactUsBtn = page.locator("a[href*='/contact_us']");
         this.name = page.locator("input[placeholder='Name']");
@@ -18,14 +28,14 @@ export class ContactUs {
         await this.contactUsBtn.click();
     }
 
-    async contactForm(name,email,subject,message) {
+    async contactForm(name:string, email:string, subject:string, message:string) {
         await this.name.fill(name);
         await this.email.fill(email);
         await this.subject.fill(subject);
         await this.message.fill(message);
     }
 
-    async submitForm(){
+    async submitForm() {
         await this.submitBtn.click();
     }
 }

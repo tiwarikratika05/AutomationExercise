@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { SignupPage } from '../pageobjects/SignupPage';
-
+import SIGNUP from '../test-data/signup-test-data.json'
 
 test.describe('As a user, I should be able to Signup in the page', async () => {
 
@@ -8,7 +8,7 @@ test.describe('As a user, I should be able to Signup in the page', async () => {
         async ({ page }) => {
             const signup = new SignupPage(page);
             await signup.goToSignupPage();
-            await signup.alreadyExistAccount();
+            await signup.alreadyExistAccount(SIGNUP.existName,SIGNUP.existEmail);
             await expect(page.getByText('Email Address already exist!')).toBeVisible();
         });
 
@@ -16,7 +16,7 @@ test.describe('As a user, I should be able to Signup in the page', async () => {
         async ({ page }) => {
             const signup = new SignupPage(page);
             await signup.goToSignupPage();
-            await signup.singUpForm();
+            await signup.singUpForm(SIGNUP.name,SIGNUP.email);
             await signup.createAccountForm();
             await expect(page.locator("h2[class='title text-center'] b")).toHaveText(['Account Created!']);
             await signup.accountCreationScreen();

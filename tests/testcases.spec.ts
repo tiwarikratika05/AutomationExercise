@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TestCases } from '../pageobjects/TestCases'
+import { TestCases } from '../pageobjects/TestCasesPage'
 import { CommonObjects } from '../pageobjects/CommonObjects'
 
 

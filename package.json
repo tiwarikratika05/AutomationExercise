@@ -5,8 +5,8 @@
   "scripts": {
     "test": "npx playwright test",
     "create": "npx playwright test --reporter=line,allure-playwright",
-    "generate":"npx allure-commandline generate ./allure-results --clean",
-    "open":"npx allure-commandline open ./allure-report"
+    "generate": "npx allure-commandline generate ./allure-results --clean",
+    "open": "npx allure-commandline open ./allure-report"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
   "devDependencies": {
     "@playwright/test": "^1.53.2",
     "@types/node": "^24.0.4",
-    "allure-playwright": "^3.3.0"
+    "allure-playwright": "^3.3.0",
+    "typescript": "^5.8.3"
   }
 }

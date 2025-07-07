@@ -1,7 +1,17 @@
-import { expect } from '@playwright/test';
+import { expect,Page,Locator } from '@playwright/test';
 
 export class ProductsPage {
-    constructor(page) {
+    page: Page;
+    productBtn : Locator;
+    firstProduct : Locator;
+    productName : Locator;
+    category : Locator;
+    brand : Locator;
+    searchBox : Locator;
+    searchSubmitIcon : Locator;
+    searchResults : Locator;
+
+    constructor(page:Page) {
         this.page = page;
         this.productBtn = page.locator("a[href='/products']");
         this.firstProduct = page.locator("a[href='/product_details/1']");
@@ -22,13 +32,13 @@ export class ProductsPage {
 
     }
 
-    async verifyProductDetails(expectedName, expectedCategory, expectedBrand) {
+    async verifyProductDetails(expectedName:string, expectedCategory:string, expectedBrand:string) {
         await expect(this.productName).toHaveText(expectedName);
         await expect(this.category).toHaveText(expectedCategory);
         await expect(this.brand).toContainText(expectedBrand);
     }
 
-    async searchProduct(productName){
+    async searchProduct(productName:string){
         await this.searchBox.fill(productName);
         await this.searchSubmitIcon.click();
     }

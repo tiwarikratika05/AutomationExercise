@@ -1,6 +1,9 @@
-export class TestCases{
+import { Page } from "@playwright/test";
 
-    constructor(page){
+export class TestCases{
+    page: Page;
+
+    constructor(page:Page){
         this.page = page;
     }
    async goToTestCasesPage(){

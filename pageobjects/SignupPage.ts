@@ -1,6 +1,31 @@
-export class SignupPage {
+import { Page, Locator } from "@playwright/test";
 
-    constructor(page) {
+export class SignupPage {
+    page: Page;
+    signupPageLink: Locator;
+    name: Locator;
+    email: Locator;
+    signupBtn: Locator;
+    genderbtn: Locator;
+    password: Locator;
+    days: Locator;
+    months: Locator;
+    years: Locator;
+    firstName: Locator;
+    lastName: Locator;
+    company: Locator;
+    address1: Locator;
+    address2: Locator;
+    country: Locator;
+    state: Locator;
+    city: Locator;
+    zipcode: Locator;
+    mobile: Locator;
+    creatAccount: Locator;
+    continue: Locator;
+    deleteaccount: Locator;
+
+    constructor(page: Page) {
         this.page = page;
         this.signupPageLink = page.locator("a[href='/login']");
         this.name = page.locator("input[placeholder='Name']");
@@ -30,7 +55,7 @@ export class SignupPage {
         await this.page.goto("https://www.automationexercise.com/");
     }
 
-    async singUpForm() {
+    async singUpForm(name:string,email:string) {
         await this.signupPageLink.click();
         await this.name.fill("kratika");
         await this.email.fill("amanTest3@gmail.com")
@@ -63,14 +88,14 @@ export class SignupPage {
 
     }
 
-    async deleteAccountScreen(page) {
+    async deleteAccountScreen() {
         await this.deleteaccount.click();
     }
 
-    async alreadyExistAccount(){
+    async alreadyExistAccount(existName:string,existEmail:string) {
         await this.signupPageLink.click();
-        await this.name.fill("kratika");
-        await this.email.fill("kt@gmail.com");
+        await this.name.fill(existName);
+        await this.email.fill(existEmail);
         await this.signupBtn.click();
     }
 }

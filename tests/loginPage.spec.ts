@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pageobjects/LoginPage'
-import LoginData from '../test-data/loginPage-test-data.json'
+import LoginData from '../test-data/login-test-data.json'
 
 test.describe('As a user, I should be able to login in the page', async () => {
 
