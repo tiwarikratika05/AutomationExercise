@@ -13,6 +13,7 @@ export class CartPage {
     productQty: Locator;
     addToCartBtn: Locator;
     productRow: Locator;
+    deleteProduct: Locator;
 
 
     /**
@@ -31,6 +32,7 @@ export class CartPage {
         this.productQty = page.locator('input#quantity');
         this.addToCartBtn = page.locator("button[type='button']");
         this.productRow = page.locator('tr#product-1');
+        this.deleteProduct = page.locator(".cart_quantity_delete");
     }
 
     /**
@@ -51,9 +53,16 @@ export class CartPage {
     }
 
     /**
+     * Clicks the "Delete product" icon in the cart page.
+     */
+    async deleteProdcutFromCart(): Promise<void> {
+        await this.deleteProduct.first().click();
+    }
+
+     /**
      * Clicks the "Continue Shopping" button in the add-to-cart modal.
      */
-    async clickContinueShopping(): Promise<void> {
+      async clickContinueShopping(): Promise<void> {
         await this.continueShoppingButton.click();
     }
 

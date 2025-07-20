@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { CartPage } from '../pageobjects/CartPage';
 import { CommonObjects } from '../pageobjects/CommonObjects';
 import { POManager } from '../pageobjects/POManager';
@@ -39,9 +39,17 @@ test.describe('Cart Page Tests', () => {
     });
 
     test('Test Case 13: Increase quantity to 4 and verify cart total', async () => {
-            await test.step('Navigate to product and add to cart', async () => {
-              await cartPage.updateProductQuantityAndVerify(PRODUCT.quantity, PRODUCT.name, PRODUCT.unitPrice);
-            });
-          });
+        await test.step('Navigate to product and add to cart', async () => {
+            await cartPage.updateProductQuantityAndVerify(PRODUCT.quantity, PRODUCT.name, PRODUCT.unitPrice);
+        });
     });
+
+    test('Test Case 17: Remove Products From Cart', async ({ page }) => {
+        await test.step('Remove product from cart', async () => {
+            await cartPage.updateProductQuantityAndVerify(PRODUCT.quantity, PRODUCT.name, PRODUCT.unitPrice);
+            await cartPage.deleteProdcutFromCart();
+            await expect(page.getByText('Cart is empty! Click here to buy products.')).toBeVisible();
+        });
+    });
+});
 
