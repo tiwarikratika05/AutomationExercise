@@ -7,6 +7,9 @@ import { SignupPage } from '../pageobjects/SignupPage';
 import { SubscriptionPage } from '../pageobjects/SubscriptionPage';
 import { TestCasesPage } from '../pageobjects/TestCasesPage';
 import { CartPage } from '../pageobjects/CartPage';
+import { PaymentPage } from "./PaymentPage";
+import { PlaceOrderPage } from "./PlaceOrderPage";
+
 
 export class POManager {
     page: Page;
@@ -19,6 +22,8 @@ export class POManager {
     subscriptionPage: SubscriptionPage;
     testCasesPage: TestCasesPage;
     cartPage: CartPage;
+    paymentPage: PaymentPage;
+    placeOrderPage: PlaceOrderPage;
 
     constructor(page: Page) {
         this.page = page;
@@ -30,6 +35,8 @@ export class POManager {
         this.subscriptionPage = new SubscriptionPage(this.page);
         this.testCasesPage = new TestCasesPage(this.page);
         this.cartPage = new CartPage(this.page);
+        this.paymentPage = new PaymentPage(this.page);
+        this.placeOrderPage = new PlaceOrderPage(this.page);
     }
 
     getLoginPage(): LoginPage {
@@ -62,5 +69,13 @@ export class POManager {
 
     getCartPage(): CartPage {
         return this.cartPage;
+    }
+
+    getPaymentPage(): PaymentPage {
+        return this.paymentPage;
+    }
+
+    getPlaceOrderPage(): PlaceOrderPage {
+        return this.placeOrderPage;
     }
 }

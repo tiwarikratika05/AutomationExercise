@@ -1,4 +1,3 @@
-import { Q } from '@faker-js/faker/dist/airline-CLphikKp';
 import { Page, Locator, expect } from '@playwright/test';
 
 export class CartPage {

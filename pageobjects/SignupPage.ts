@@ -56,8 +56,9 @@ export class SignupPage {
      * Navigates to the home/signup page.
      */
     async goToSignupPage(): Promise<void> {
-        await this.page.goto("https://www.automationexercise.com/");
+        await this.signupPageLink.click();
     }
+
 
     /**
  * Fills and submits the signup form using either provided or dynamically generated data.
@@ -71,31 +72,36 @@ export class SignupPage {
  *
  * @returns An object containing the `name` and `email` used in the form, which can be used for assertions in tests.
  */
-async fillSignupForm(name?: string, email?: string): Promise<{ name: string; email: string }> {
-    await this.signupPageLink.click();
-    const randomName = name || faker.person.firstName();
+async fillSignupForm(username?: string, email?: string): Promise<{ username: string; email: string }> {
+    
+    const randomName = username || faker.person.firstName();
     const randomEmail = email || faker.internet.email({ firstName: randomName });
   
     await this.name.fill(randomName);
     await this.email.fill(randomEmail);
     await this.signupBtn.click();
   
-    return { name: randomName, email: randomEmail };
+    return { username: randomName, email: randomEmail };
   }
 
     /**
      * Completes the create account form with faker-generated data.
      */
-    async fillCreateAccountForm(): Promise<void> {
+     async fillCreateAccountForm(): Promise<{ firstName: string, lastName: string, phoneNum: string }> {
+        const day = faker.number.int({ min: 1, max: 31 }).toString();
+        const month = faker.date.month();
+        const year = faker.number.int({ min: 1960, max: 2005 }).toString();
+        const firstName = faker.person.firstName();
+        const lastName = faker.person.lastName();
+        const phoneNum = faker.phone.number();
+    
         await this.genderBtn.click();
-        await this.password.fill("Test123");
-
-        await this.days.selectOption("5");
-        await this.months.selectOption("May");
-        await this.years.selectOption("1995");
-
-        await this.firstName.fill(faker.person.firstName());
-        await this.lastName.fill(faker.person.lastName());
+        await this.password.fill(faker.internet.password());
+        await this.days.selectOption(day);
+        await this.months.selectOption(month);
+        await this.years.selectOption(year);
+        await this.firstName.fill(firstName);
+        await this.lastName.fill(lastName);
         await this.company.fill(faker.company.name());
         await this.address1.fill(faker.location.streetAddress());
         await this.address2.fill(faker.location.secondaryAddress());
@@ -103,9 +109,10 @@ async fillSignupForm(name?: string, email?: string): Promise<{ name: string; ema
         await this.state.fill(faker.location.state());
         await this.city.fill(faker.location.city());
         await this.zipcode.fill(faker.location.zipCode());
-        await this.mobile.fill(faker.phone.number());
-
+        await this.mobile.fill(phoneNum);
         await this.createAccountBtn.click();
+    
+        return { firstName, lastName, phoneNum };
     }
 
     /**

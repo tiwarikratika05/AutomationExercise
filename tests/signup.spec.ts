@@ -51,8 +51,9 @@ test.describe('Signup Flow', () => {
     test('TC_01: Dynamic Signup and Account Deletion', async () => {
 
         await test.step('Fill signup form with dynamic data', async () => {
+            await signup.goToSignupPage();
             const userData = await signup.fillSignupForm(); // no args, faker will handle
-            dynamicName = userData.name;
+            dynamicName = userData.username;
         });
 
         await test.step('Complete account creation form', async () => {

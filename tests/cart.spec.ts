@@ -38,7 +38,7 @@ test.describe('Cart Page Tests', () => {
         });
     });
 
-    test('Test Case 13: Increase quantity to 4 and verify cart total', async () => {
+    test('Test Case 18: Increase quantity to 4 and verify cart total', async () => {
         await test.step('Navigate to product and add to cart', async () => {
             await cartPage.updateProductQuantityAndVerify(PRODUCT.quantity, PRODUCT.name, PRODUCT.unitPrice);
         });
