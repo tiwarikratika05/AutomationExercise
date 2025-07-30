@@ -7,14 +7,20 @@ export class SubscriptionPage {
     subscriptionSubmit: Locator;
     cartLink: Locator;
     successAlert: Locator;
+    subscriptionTitle: Locator;
+    homePageText: Locator;
+    scrollUpArrow: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.footerSection = page.locator('#footer');
         this.subscriptionBox = page.locator("#susbscribe_email");
-        this.subscriptionSubmit = page.locator("#subscribe"); 
+        this.subscriptionSubmit = page.locator("#subscribe");
         this.cartLink = page.getByRole('link', { name: ' Cart' });
         this.successAlert = page.locator("#success-subscribe");
+        this.subscriptionTitle = page.locator("div[class='single-widget'] h2");
+        this.homePageText = page.locator("div[class='item active'] div[class='col-sm-6'] h2");
+        this.scrollUpArrow = page.locator("#scrollUp")
     }
 
     /**
@@ -45,4 +51,25 @@ export class SubscriptionPage {
             await expect(this.successAlert).toBeHidden({ timeout: 5000 }); // optional wait
         }
     }
+
+    /**
+     * Verifies the user able to scroll up and down using arrow the website page
+     */
+    async verifyScrollUpAndDownUsingArrow(): Promise<void> {
+        await this.footerSection.scrollIntoViewIfNeeded();
+        await expect(this.subscriptionTitle).toHaveText("Subscription");
+        await this.scrollUpArrow.click();
+        await expect(this.homePageText).toHaveText("Full-Fledged practice website for Automation Engineers");
+    }
+
+     /**
+     * Verifies the user able to scroll up and down without arrow the website page
+     */
+      async verifyScrollUpAndDown(): Promise<void> {
+        await this.footerSection.scrollIntoViewIfNeeded();
+        await expect(this.subscriptionTitle).toHaveText("Subscription");
+        await this.page.mouse.up();
+        await expect(this.homePageText).toHaveText("Full-Fledged practice website for Automation Engineers");
+    }
 }
+

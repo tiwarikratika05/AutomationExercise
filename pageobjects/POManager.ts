@@ -9,7 +9,7 @@ import { TestCasesPage } from '../pageobjects/TestCasesPage';
 import { CartPage } from '../pageobjects/CartPage';
 import { PaymentPage } from "./PaymentPage";
 import { PlaceOrderPage } from "./PlaceOrderPage";
-
+import { CategoryPage } from "./CategoryPage";
 
 export class POManager {
     page: Page;
@@ -24,6 +24,7 @@ export class POManager {
     cartPage: CartPage;
     paymentPage: PaymentPage;
     placeOrderPage: PlaceOrderPage;
+    categoryPage:CategoryPage;
 
     constructor(page: Page) {
         this.page = page;
@@ -77,5 +78,9 @@ export class POManager {
 
     getPlaceOrderPage(): PlaceOrderPage {
         return this.placeOrderPage;
+    }
+
+    getCategoryPage(): CategoryPage {
+        return this.categoryPage;
     }
 }

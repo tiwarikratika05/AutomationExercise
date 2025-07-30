@@ -17,7 +17,6 @@ export class CommonObjects {
     async goToWebsite(): Promise<void> {
         await this.page.goto('/', { waitUntil: 'domcontentloaded' });
         await expect(this.homeLogo).toBeVisible();
-        await this.page.waitForLoadState('networkidle');
     }
 
     /**

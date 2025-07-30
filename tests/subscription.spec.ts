@@ -25,4 +25,13 @@ test.describe('As a user, I should be able to access subscription section in the
     await subscribe.verifySubscriptionSuccess();
   });
 
+  test('Test Case 25: Verify Scroll Up using Arrow button and Scroll Down functionality', async ({ page }) => {
+    await subscribe.verifyScrollUpAndDownUsingArrow();
+
+  });
+
+  test('Test Case 26: Verify Scroll Up without Arrow button and Scroll Down functionality', async ({ page }) => {
+    await subscribe.verifyScrollUpAndDown();
+  });
 });
+
